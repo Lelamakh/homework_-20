@@ -72,7 +72,7 @@ const slideFn = () => {
       }
     });
   };
-  prevSlideBtn.addEventListener("click", (e) => {
+  const goToPrevSlide = () => {
     if (currentSlide <= 0) {
       currentSlide = slides.length - 1;
     } else {
@@ -80,8 +80,8 @@ const slideFn = () => {
       console.log(currentSlide);
     }
     showSlides();
-  });
-  nextSlideBtn.addEventListener("click", (e) => {
+  };
+  const goToNextSlide = () => {
     if (currentSlide === slides.length - 1) {
       currentSlide = 0;
     } else {
@@ -89,50 +89,47 @@ const slideFn = () => {
       console.log(currentSlide);
     }
     showSlides();
+  };
+  //   prevSlideBtn.addEventListener("click", goToPrevSlide);
+  //   nextSlideBtn.addEventListener("click", goToNextSlide);
+
+  // დავალება 1) - საათი
+
+  // დავალება 2.1) სლაიდერის 5წმ-იანი ცვლილება
+  // (თუ გვინდა, რომ 2 წამში ერთხელ ავტომატურად გადავიდეს სლაიდები,
+  // კლიკთან ერთად არ მუშაობს)
+  //   const slideInterval = setInterval(goToNextSlide, 2000);
+  const slideInterval = setInterval(goToNextSlide, 5000);
+
+  // დავალება 2.2) მაუსის მიტანისას სლაიდერის გაჩერება
+  addEventListener("mouseenter", (event) => {
+    onmouseenter = (event) => {};
   });
+  //   const startSlider = () => {
+  //     slideInterval = setInterval(goToNextSlide, 5000);
+  //   };
+  //   const stopSlider = () => {
+  //     clearInterval(slideInterval);
+  //   };
+  //   const slider = document.getElementById("#slides-container");
+  //   slider.addEventListener("mouseenter", stopSlider);
+  //   slider.addEventListener("mouseleave", startSlider);
+  // დავალება 2.3) მაუსის გამოტანისას სლაიდერის გაგრძელება
+
+  // დავალება 3) countdown
 
   showSlides();
 };
 
 slideFn();
 
-// const slideFn = () => {
-//   let currentSlide = 2;
-//   // slides[currentSlide].classList.add("active");
-
-//   const showSlides = () => {
-//     slides.forEach((slide, index) => {
-//       if (index === currentSlide) {
-//         slide.classList.add("active");
-//       } else {
-//         slide.classList.remove("active");
-//       }
-//     });
-//   };
-//   const goToPrevSlide = () => {
-//     if (currentSlide === 0) {
-//       // prevSlideBtn.style.pointerEvents = "none";
-//       // prevSlideBtn.disabled = true;
-//       currentSlide = slides.length - 1;
-//     } else {
-//       // prevSlideBtn.style.pointerEvents = "initial";
-//       // prevSlideBtn.disabled = false;
-//       currentSlide--;
-//     }
-
-//     // console.log(currentSlide);
-//     showSlides();
-//   };
-//   const goToNextSlide = () => {
-//     if (currentSlide === slides.length - 1) {
-//       // nextSlideBtn.style.pointerEvents = "none";
-//       // nextSlideBtn.disabled = true;
-//       currentSlide = 0;
-//     } else {
-//       currentSlide++;
-//     }
-
-//     // console.log(currentSlide);
-//     showSlides();
-//   };
-// };
+// document.addEventListener("Keyup", (event) => {
+//   console.log(event);
+//   if (event.code === "ArrowLeft") {
+//     goToPrevSlide();
+//   }
+//   if (event.code === "ArrowRight") {
+//     goToNextSlide;
+//   }
+//   showSlides();
+// });
