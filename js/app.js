@@ -94,42 +94,36 @@ const slideFn = () => {
   //   nextSlideBtn.addEventListener("click", goToNextSlide);
 
   // დავალება 1) - საათი
+  const realWatch = document.getElementById("watch");
+  const updateWatch = () => {
+    const now = new Date();
+    const hours = now.getHours().toString().padStart(2, "0");
+    const minutes = now.getMinutes().toString().padStart(2, "0");
+    const seconds = now.getSeconds().toString().padStart(2, "0");
+    realWatch.textContent = `${hours}:${minutes}:${seconds}`;
+  };
+  setInterval(updateWatch, 1000);
 
   // დავალება 2.1) სლაიდერის 5წმ-იანი ცვლილება
-  // (თუ გვინდა, რომ 2 წამში ერთხელ ავტომატურად გადავიდეს სლაიდები,
-  // კლიკთან ერთად არ მუშაობს)
-  //   const slideInterval = setInterval(goToNextSlide, 2000);
+
   const slideInterval = setInterval(goToNextSlide, 5000);
 
   // დავალება 2.2) მაუსის მიტანისას სლაიდერის გაჩერება
-  addEventListener("mouseenter", (event) => {
-    onmouseenter = (event) => {};
+
+  const slidesContainer = document.querySelector("#slides-container");
+  slidesContainer.addEventListener("mouseenter", () => {
+    clearInterval(slideInterval);
+    console.log("slides paused");
   });
-  //   const startSlider = () => {
-  //     slideInterval = setInterval(goToNextSlide, 5000);
-  //   };
-  //   const stopSlider = () => {
-  //     clearInterval(slideInterval);
-  //   };
-  //   const slider = document.getElementById("#slides-container");
-  //   slider.addEventListener("mouseenter", stopSlider);
-  //   slider.addEventListener("mouseleave", startSlider);
+
   // დავალება 2.3) მაუსის გამოტანისას სლაიდერის გაგრძელება
 
-  // დავალება 3) countdown
+  slidesContainer.addEventListener("mouseleave", () => {
+    slideInterval = setInterval(goToNextSlide, 5000);
+    console.log("Slides resumed");
+  });
 
   showSlides();
 };
 
 slideFn();
-
-// document.addEventListener("Keyup", (event) => {
-//   console.log(event);
-//   if (event.code === "ArrowLeft") {
-//     goToPrevSlide();
-//   }
-//   if (event.code === "ArrowRight") {
-//     goToNextSlide;
-//   }
-//   showSlides();
-// });
