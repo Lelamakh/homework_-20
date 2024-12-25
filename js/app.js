@@ -106,7 +106,7 @@ const slideFn = () => {
 
   // დავალება 2.1) სლაიდერის 5წმ-იანი ცვლილება
 
-  const slideInterval = setInterval(goToNextSlide, 5000);
+  let slideInterval = setInterval(goToNextSlide, 5000);
 
   // დავალება 2.2) მაუსის მიტანისას სლაიდერის გაჩერება
 
